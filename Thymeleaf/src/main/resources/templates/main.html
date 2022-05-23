@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>thymeleaf test</title>
+</head>
+<body>
+		<div id="sample">
+		
+		</div>
+
+		<h2>thymeleaf test page</h2>
+		<h3> 이름:[[${name}]]</h3>
+		<h3> 자산:[[${person.asset}]]$</h3>
+		<h3> 부채:[[${person.debt}]]$</h3>
+		<h3> 자산목록:[[${person.properties}]]</h3>
+		<h3> 활동명:[[${person.nickname}]]</h3>
+		<h3> 생년월일:[[${person.birthtime}]]</h3>
+		
+	
+		<ul>
+				<h3> 3의 배수의 회원번호를 가진 사람들</h3>
+			<li th:each="vo, state : ${list}" >
+			<a href="@{/exview/}">[[${vo.name}]]</a>
+			<a href="@{/exview(num=${vo.num})}">[[${vo.name}]]</a>
+			<a href="@{/exview/{num}(num=${vo.num})}">[[${vo.name}]]</a>
+			</li>
+		</ul>
+				
+		
+		
+			<script type="text/javascript" th:inline="javascript">
+					
+			</script>
+		
+		
+</body>
+</html>

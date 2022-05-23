@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thyemleaf.org">
+<th:block th:replace="~{/layout/basic::setContent(~{this::content})}">
+<th:block th:fragment="content">
+<head>
+<meta charset="UTF-8">
+<title>목록보기 </title>
+
+</head>
+<body>
+	<span>
+		<a th:href="@{/memo/insert}">
+			<button type="button" class="btn btn-outline-warning">메모 작성</button>
+		</a>
+	</span>
+		검색<input type="text" name="search"/>
+	<table class = "table table-striped">
+		<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">제목</th>
+					<th scope="col">내용</th>
+					<th scope="col">작성일</th>
+			</tr>
+			
+		</thead>
+	<tbody>
+				<tr th:each ="dto:${result.dtoList}"> 
+					<th scope ="row">[[${dto.gno}]]
+						<td><a th:href="@{/memo/read(gno=${dto.gno},page=${result.page})}">[[${dto.title}]]</a></td>
+						<td>[[${dto.writer}]]</td>
+						<td>[[${#temporals.format(dto.regdate,'yyyy/MM/dd')}]]</td>
+						</tr>
+			</tbody>
+			</table>
+				
+			<ul class="pagination h-100 justify-content-center align-items-center">
+
+            <li class="page-item " th:if="${result.prev}">
+                <a class="page-link" th:href="@{/memo/list(page= ${result.start -1})}" tabindex="-1">이전</a>
+            </li>
+
+            <li th:class=" 'page-item ' + ${result.page == page?'active':''} " th:each="page: ${result.pageList}">
+                <a class="page-link" th:href="@{/memo/list(page = ${page})}">
+                    [[${page}]]
+                </a>
+            </li>
+
+            <li class="page-item" th:if="${result.next}">
+                <a class="page-link" th:href="@{/memo/list(page= ${result.end + 1})}">다음</a>
+            </li>
+
+</ul>
+
+		</th:block>
+		</th:block>
+		</body>
+		

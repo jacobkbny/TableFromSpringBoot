@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sample</title>
+</head>
+<body>
+
+	<h2> Sample Page 입니다.</h2>
+		<table>
+			<tr th:each="vo:${list}">
+				<td>이름</td>
+					<td>[[${vo.name}]]</td>
+				<td>재산</td>
+					<td>$[[${vo.asset}]]</td>
+					<td>빛</td>
+					<td>$[[${#numbers.formatInteger(vo.debt,3)}]]</td>
+					<td>생년월일</td>
+					<td>[[${#temporals.format(vo.birthtime, 'yyyy-MM-dd')}]]</td>
+					
+								
+			</tr>
+			
+		</table>			
+</body>
+</html>
